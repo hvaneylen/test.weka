@@ -1,0 +1,15 @@
+@relation email
+
+@attribute loveTheme numeric
+@attribute workTheme numeric
+@attribute gameTheme numeric
+@attribute childTheme numeric
+@attribute holidayTheme numeric
+@attribute computerTheme numeric
+@attribute houseTheme numeric
+@attribute sender {Hugues, Myriam, Ethan}
+
+@data
+1,0,0,2,1,1,1,?
+0,3,0,0,1,1,1,?
+0,1,5,4,2,2,0,?
