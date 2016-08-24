@@ -3,6 +3,7 @@ package org.mvlabs.weka.test;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.Random;
+import java.util.ResourceBundle;
 
 import weka.classifiers.Evaluation;
 import weka.classifiers.bayes.NaiveBayes;
@@ -13,7 +14,13 @@ import weka.core.converters.ConverterUtils.DataSource;
 public class NBTest1 {
 
 	public static void main(String[] args) throws Exception {
-		BufferedReader breader = new BufferedReader(new FileReader("D:\\logiciels\\eclipse_mars\\eclipse\\workspace\\weka.test\\src\\resources\\email.arff"));
+		
+		// create a source folder name src/env/java and an .gitIgnore -> /env/ at src 
+		//put the correct values for your environment
+		
+		ResourceBundle bundle = ResourceBundle.getBundle("org/mvlabs/properties/props");
+		
+		BufferedReader breader = new BufferedReader(new FileReader(bundle.getString("file.email")));
 		Instances train = new Instances(breader);
 		train.setClassIndex(train.numAttributes() - 1); // index of the attribute used to classify
 		breader.close();
@@ -25,7 +32,7 @@ public class NBTest1 {
 		System.out.println(eval.toSummaryString("\nresults\n=======\n", true));
 		System.out.println(eval.fMeasure(1) + " " + eval.precision(1) + " " + eval.recall(1));
 		
-		DataSource source2 = new DataSource("D:\\logiciels\\eclipse_mars\\eclipse\\workspace\\weka.test\\src\\resources\\emailTest.arff");
+		DataSource source2 = new DataSource(bundle.getString("file.emailtest"));
         Instances test = source2.getDataSet();
         // setting class attribute if the data format does not provide this information
         // For example, the XRFF format saves the class attribute information as well
